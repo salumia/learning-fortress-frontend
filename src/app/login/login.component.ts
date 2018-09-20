@@ -22,7 +22,9 @@ export class LoginComponent {
 
     sel: boolean = false;
 
-    constructor(public authService: AuthService) { }
+    constructor(public authService: AuthService) {
+        console.log('I am Nitin Saluja - Sr. Open Source Developer');
+    }
 
     selected(userType: number) {
         this.sel = true;
