@@ -86,11 +86,15 @@ export class MultipleChoiceComponent extends CompComponent {
 
     mark(attempt: ComponentAttempt, prev: ComponentAttempt) : ComponentAttempt {
         // If the question is answered in review phase, add 2 to the mark and not 5.
-        let markIncrement = prev ? 2 : 5;
-        attempt.correct = true;
-        attempt.marks = 0;
+        let answersCount = this.data.data.choices.length;
+
+        //let markIncrement = prev ? 2 : 5;
+
         // The maximum number of marks is the number of answers * 5.
         attempt.maxMarks = this.data.data.correctAnswers * 5;
+        let markIncrement = prev ? 2 : attempt.maxMarks / answersCount;
+        attempt.correct = true;
+        attempt.marks = 0;
         // For every option...
         this.data.data.choices.forEach((ans, i) => {
             // if the option is within the set of correct answers...
